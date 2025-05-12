@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateTokenAndSetCookie } from "../lib/utils/generateToken.js";
@@ -80,7 +79,9 @@ export const login = async (req, res) => {
             followers: user.followers,
             following: user.following,
             profileImg: user.profileImg,
-            coverImg: user.coverImg,        
+            coverImg: user.coverImg,
+            // bio: user.bio,
+            // link: user.link,        
         });
 
     } catch (error) {
@@ -116,8 +117,6 @@ export const logout = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });  
     }
 }
-
-
 
 export const getMe = async (req, res) => {
     try {
