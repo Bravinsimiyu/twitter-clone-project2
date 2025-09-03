@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 
 const Sidebar = () => {
   const queryClient = useQueryClient();
-  const { mutate: logout } = useMutation({
+  const { mutate: logoutMutation } = useMutation({
     mutationFn: async () => {
       try {
         const res = await fetch("/api/auth/logout", {
@@ -89,7 +89,7 @@ const Sidebar = () => {
                 className='w-5 h-5 cursor-pointer'
                 onClick={(e) => {
                   e.preventDefault();
-                  logout();
+                  logoutMutation();
                 }}
               />
             </div>
