@@ -24,11 +24,13 @@ const PORT = process.env.PORT || 5000;
 
 // console.log(process.env.MONGO_URI);
 
-app.use(express.json()); // Middleware to parse JSON request bodies req.body
+app.use(express.json({ limit: "5mb" })); // Middleware to parse JSON request bodies req.body
+// limit: "5mb" is added to increase the default limit of 100kb for json data
+// Also limit shouldn't too high, because it can lead to denial of service attacks
 app.use(express.urlencoded({ extended: true })); // Middleware to parse form data (URL-encoded request bodies req.body)
 
 app.use(cookieParser()); // Middleware to parse cookies in request headers req.cookies
-
+ 
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
